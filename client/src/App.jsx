@@ -11,9 +11,13 @@ import { userVerify } from './services/ServiceWorkers'
 import PageNotFound from './components/PageNotFound'
 import Logout from './components/Logout'
 import NewMatch from './components/NewMatch'
+import Score from './components/Score'
 
 function App() {
+  const initialState = { teamOne: "", teamTwo: "", teamOneScore: 0, teamTwoScore: 0 };
+  const [newMatch, setNewMatch] = useState(initialState);
   const [userDetails, setUserDetails] = useState(null);
+  const flag = (newMatch.teamOne.trim() !== "" && newMatch.teamTwo.trim() !== "" && newMatch.teamOneScore >= 0 && newMatch.teamTwoScore >= 0) ? true: false;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,7 +41,9 @@ function App() {
     msg,
     setMsg,
     userDetails,
-    setUserDetails
+    setUserDetails,
+    newMatch,
+    setNewMatch
   }
 
   return (
@@ -51,6 +57,7 @@ function App() {
             <Route path={'/register'} element={(userDetails) ? <PageNotFound /> : <Register />} />
             <Route path={'/login'} element={(userDetails) ? <PageNotFound /> : <Login />} />
             <Route path={'/new_match'} element={(userDetails) ? <NewMatch /> : <PageNotFound />} />
+            <Route path={'/score'} element={(userDetails && flag) ? <Score /> : <PageNotFound />} />
             <Route path={'/logout'} element={(userDetails) ? <Logout /> : <PageNotFound />} />
             <Route path={'*'} element={<PageNotFound />} />
           </Routes>

@@ -1,11 +1,10 @@
 import React, { Fragment, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import userContext from '../context/userContext';
+import { updateMatch } from '../services/ServiceWorkers';
 
 function NewMatch() {
-  const initialState = { teamOne: "", teamTwo: "", teamOneScore: 0, teamTwoScore: 0 };
-  const [newMatch, setNewMatch] = useState(initialState);
-  const { setMsg } = useContext(userContext)
+  const { setMsg, newMatch, setNewMatch } = useContext(userContext)
   const nav = useNavigate();
 
   const handleEdit = (e) => {
@@ -21,7 +20,19 @@ function NewMatch() {
       return;
     }
 
-    console.log(newMatch);
+    setNewMatch({...newMatch, teamOneScore: 0, teamTwoScore: 0});
+
+    updateMatch(newMatch)
+      .then((response) => {
+        if (response.message == "Updated Successfully") {
+          setMsg(response.message);
+          setMsg("Reset After Game Over");
+          nav('/score');
+        }
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
   }
 
   return (

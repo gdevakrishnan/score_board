@@ -24,3 +24,15 @@ export const userVerify = async (userDetails) => {
 }
 
 // CREATE AND UPDATE SCORE
+export const updateMatch = async (newMatch) => {
+    const task = await Axios.put(`${BASE_URL}/match/update`, newMatch);
+    const response = task.data;
+    return response;
+}
+
+// TO RESET MATCH
+export const resetMatch = async (newMatch) => {
+    const task = await Axios.put(`${BASE_URL}/match/reset`, newMatch);
+    const response = task.data;
+    return response;
+}

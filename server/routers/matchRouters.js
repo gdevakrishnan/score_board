@@ -1,8 +1,9 @@
 const express = require('express');
-const { updateMatch, resetMatch } = require('../controllers/matchControllers');
+const { getMatchDetails, updateMatch, resetMatch } = require('../controllers/matchControllers');
 const routers = express.Router();
 
-routers.put('/', updateMatch);
+routers.get('/', getMatchDetails);
+routers.put('/update', updateMatch);
 routers.put('/reset', resetMatch);
 
 module.exports = ("matchRouters", routers);

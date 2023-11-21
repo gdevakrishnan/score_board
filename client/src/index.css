@@ -428,3 +428,44 @@ footer .footer_content {
     display: inline;
     width: auto;
 }
+
+/* Score Page */
+.score_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.score_page .main {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.score_page .main .board {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.score_page .main .board .increaseBtn,
+.score_page .button .btn {
+    color: var(--color5);
+    background-color: var(--color1);
+    padding: 6px 16px;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    margin-top: 14px;
+}
+
+.score_page .button {
+    display: flex;
+    gap: 20px;
+}
