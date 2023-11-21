@@ -22,3 +22,5 @@ export const userVerify = async (userDetails) => {
     const response = task.data;
     return response;
 }
+
+// CREATE AND UPDATE SCORE

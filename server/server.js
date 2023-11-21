@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 const userRouters = require('./routers/userRouters');
+const matchRouters = require('./routers/matchRouters');
 
 require('dotenv').config();
 const { PORT, MONGO_URI } = process.env;
@@ -23,3 +24,4 @@ mongoose.connect(MONGO_URI)
 
 // Routers
 app.use('/score_board', userRouters);
+app.use('/score_board/match', matchRouters);
